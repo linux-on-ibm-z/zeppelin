@@ -36,12 +36,12 @@ cache:
 
 addons:
   apt:
-    sources:
-    - r-source
-    - sourceline: 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/'
-      key_url: 'keyserver.ubuntu.com/pks/lookup?op=get&search=0x51716619E084DAB9'
-    - r-packages-trusty
-    - mysql-5.7-trusty
+#    sources:
+#    - r-source
+#    - sourceline: 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/'
+#      key_url: 'keyserver.ubuntu.com/pks/lookup?op=get&search=0x51716619E084DAB9'
+#    - r-packages-trusty
+#    - mysql-5.7-trusty
     packages:
     - r-base
     - r-base-dev
