@@ -49,6 +49,7 @@ addons:
     - mysql-client
     - xvfb
     - maven
+    - phantomjs
 
 services:
   - mysql
