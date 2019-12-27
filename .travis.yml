@@ -48,6 +48,7 @@ addons:
     - mysql-server
     - mysql-client
     - xvfb
+    - maven
 
 services:
   - mysql
