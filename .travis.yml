@@ -47,6 +47,7 @@ addons:
     - r-base-dev
     - mysql-server
     - mysql-client
+    - xvfb
 
 services:
   - mysql
