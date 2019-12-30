@@ -94,6 +94,8 @@ before_install:
   #- ./dev/change_scala_version.sh $SCALA_VER
   - source ~/.environ
   - if [ "$TRAVIS_ARCH" = "s390x" ]; then sudo apt-get install -y sudo wget openjdk-11-jdk; wget -q https://raw.githubusercontent.com/linux-on-ibm-z/scripts/master/PhantomJS/build_phantomjs.sh; bash build_phantomjs.sh -y; fi
+  - export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-s390x/   
+  - export PATH=$JAVA_HOME/bin:$PATH    
 
 install:
   - java -version
