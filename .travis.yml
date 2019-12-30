@@ -75,7 +75,6 @@ matrix:
       arch: s390x
       dist: bionic
       jdk: "openjdk11"
-      dist: xenial
       env: BUILD_FLAG="clean package -T C2 -DskipTests" TEST_FLAG="test -DskipTests" QT_QPA_PLATFORM="offscreen"
   
 before_install:
