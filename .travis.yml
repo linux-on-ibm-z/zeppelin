@@ -13,8 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-os: linux
-arch: s390x
 
 language: java
 
@@ -49,7 +47,6 @@ addons:
     - mysql-client
     - xvfb
     - maven
-    - phantomjs
 
 services:
   - mysql
@@ -62,16 +59,23 @@ env:
 matrix:
   include:
     # Test License compliance using RAT tool
-    - jdk: "openjdk8"
-      dist: xenial
-      env: SCALA_VER="2.11" PROFILE="-Prat" BUILD_FLAG="clean" TEST_FLAG="org.apache.rat:apache-rat-plugin:check" TEST_PROJECTS=""
+ #   - jdk: "openjdk8"
+ #     dist: xenial
+ #     env: SCALA_VER="2.11" PROFILE="-Prat" BUILD_FLAG="clean" TEST_FLAG="org.apache.rat:apache-rat-plugin:check" TEST_PROJECTS=""
 
     # Default build command, no tests
     - sudo: required
       jdk: "openjdk8"
       dist: xenial
       env: BUILD_FLAG="clean package -T C2 -DskipTests" TEST_FLAG="test -DskipTests"
-
+      
+    # Default build command, no tests
+    - sudo: required
+      os: linux
+      arch: s390x
+      jdk: "openjdk8"
+      dist: xenial
+      env: BUILD_FLAG="clean package -T C2 -DskipTests" TEST_FLAG="test -DskipTests" QT_QPA_PLATFORM="offscreen"
   
 before_install:
   # check files included in commit range, clear bower_components if a bower.json file has changed.
@@ -89,6 +93,7 @@ before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x1024x16"
   #- ./dev/change_scala_version.sh $SCALA_VER
   - source ~/.environ
+  - if [ "$TRAVIS_ARCH" = "s390x" ]; then apt-get install -y sudo wget; wget -q https://raw.githubusercontent.com/linux-on-ibm-z/scripts/master/PhantomJS/build_phantomjs.sh; bash build_phantomjs.sh -y; fi
 
 install:
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
