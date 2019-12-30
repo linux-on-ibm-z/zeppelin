@@ -96,6 +96,8 @@ before_install:
   - if [ "$TRAVIS_ARCH" = "s390x" ]; then sudo apt-get install -y sudo wget openjdk-11-jdk; wget -q https://raw.githubusercontent.com/linux-on-ibm-z/scripts/master/PhantomJS/build_phantomjs.sh; bash build_phantomjs.sh -y; fi
 
 install:
+  - java -version
+  - node -v
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
   - mvn $BUILD_FLAG $MODULES $PROFILE -B
   - if [ x"$BUILD_PLUGINS" == x"true" ]; then echo "mvn clean package -T 2C -pl zeppelin-plugins -amd -B"; mvn clean package -T 2C -pl zeppelin-plugins -amd -B; fi
