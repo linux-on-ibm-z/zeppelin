@@ -71,7 +71,7 @@ jobs:
 
 before_install:
   - sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git wget tar maven curl
-  - wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_s390x_linux_hotspot_8u232b09.tar.gz && tar -xvf OpenJDK8U-jdk_s390x_linux_hotspot_8u232b09.tar.gz && export JAVA_HOME=`pwd`/jdk8u232-b09 && export PATH=$JAVA_HOME/bin:$PATH && java -version
+  - wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09_openj9-0.17.0/OpenJDK8U-jdk_s390x_linux_openj9_8u232b09_openj9-0.17.0.tar.gz && tar -xvf OpenJDK8U-jdk_s390x_linux_openj9_8u232b09_openj9-0.17.0.tar.gz && export JAVA_HOME=`pwd`/jdk8u232-b09/ && export PATH=$JAVA_HOME/bin:$PATH && java -version
   # check files included in commit range, clear bower_components if a bower.json file has changed.
   # bower cache clearing can also be forced by putting "bower clear" or "clear bower" in a commit message
   - changedfiles=$(git diff --name-only $TRAVIS_COMMIT_RANGE 2>/dev/null) || changedfiles=""
