@@ -73,6 +73,10 @@ before_install:
 #  - sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git wget tar maven curl
 #  - wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09_openj9-0.17.0/OpenJDK8U-jdk_s390x_linux_openj9_8u232b09_openj9-0.17.0.tar.gz && tar -xvf OpenJDK8U-jdk_s390x_linux_openj9_8u232b09_openj9-0.17.0.tar.gz && export JAVA_HOME=`pwd`/jdk8u232-b09/ && export PATH=$JAVA_HOME/bin:$PATH && java -version
   #Install Protobuf 3.3.0 on z
+  - sudo apt-get install -y openjdk-8-jdk
+  - export JAVA_HOME="$(readlink -f /etc/alternatives/javac | sed 's:/bin/javac::')" 
+  - export PATH=$JAVA_HOME/bin:$PATH
+  - java -version
   - sudo apt-get install -y tar wget autoconf libtool automake g++ make git bzip2 curl unzip zlib1g-dev
   - git clone git://github.com/google/protobuf.git && cd protobuf && git checkout v3.3.0 && git config --global url."git://github.com/".insteadOf "https://github.com/" && git submodule update --init --recursive
   - ./autogen.sh && ./configure && make && sudo make install && sudo ldconfig && export LD_LIBRARY_PATH=/usr/local/lib 
