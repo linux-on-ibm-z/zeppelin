@@ -76,8 +76,8 @@ before_install:
   - sudo apt-get install -y tar wget autoconf libtool automake g++ make git bzip2 curl unzip zlib1g-dev
   - git clone git://github.com/google/protobuf.git && cd protobuf && git checkout v3.3.0 && git config --global url."git://github.com/".insteadOf "https://github.com/" && git submodule update --init --recursive
   - ./autogen.sh && ./configure && make && sudo make install 
-  - mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/src/.libs/protoc
   - cd ..
+  - mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/protobuf/src/.libs/protoc
   # check files included in commit range, clear bower_components if a bower.json file has changed.
   # bower cache clearing can also be forced by putting "bower clear" or "clear bower" in a commit message
   - changedfiles=$(git diff --name-only $TRAVIS_COMMIT_RANGE 2>/dev/null) || changedfiles=""
