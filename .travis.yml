@@ -87,13 +87,7 @@ before_install:
   - cd ..
   - mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/src/.libs/protoc
   - git clone https://github.com/grpc/grpc-java.git && cd grpc-java/ && git checkout v1.4.0
-  - cat > outfile.txt <<EOF \
-> @@ -49,6 +49,9 @@ \
->      gcc(Gcc) { \
->        target("s390x") \
->      } \
-> EOF
-
+  - cat > outfile.txt <<EOF \n > @@ -49,6 +49,9 @@ \n >      gcc(Gcc) { \n >        target("s390x") >      } > EOF
   - cat outfile.txt
   - exit 1
   - patch --ignore-whitespace ./compiler/build.gradle < build_gradle.diff
