@@ -71,6 +71,9 @@ jobs:
 
 before_install:
 #  - sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git wget tar maven curl
+  - wget http://public.dhe.ibm.com/ibmdl/export/pub/systems/cloud/runtimes/java/8.0.6.0/linux/s390x/ibm-java-s390x-sdk-8.0-6.0.bin 
+  - wget https://raw.githubusercontent.com/zos-spark/scala-workbench/master/files/installer.properties.java && tail -n +3 installer.properties.java | tee installer.properties && cat installer.properties && chmod +x ibm-java-s390x-sdk-8.0-6.0.bin
+  - sudo ./ibm-java-s390x-sdk-8.0-6.0.bin -r installer.properties && export JAVA_HOME=/opt/ibm/java && export PATH=$JAVA_HOME/bin:$PATH
 #  - wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09_openj9-0.17.0/OpenJDK8U-jdk_s390x_linux_openj9_8u232b09_openj9-0.17.0.tar.gz && tar -xvf OpenJDK8U-jdk_s390x_linux_openj9_8u232b09_openj9-0.17.0.tar.gz && export JAVA_HOME=`pwd`/jdk8u232-b09/ && export PATH=$JAVA_HOME/bin:$PATH && java -version
   #Install Protobuf 3.3.0 on z
 #  - sudo apt-get install -y openjdk-8-jdk
