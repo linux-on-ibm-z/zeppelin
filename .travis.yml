@@ -73,7 +73,7 @@ before_install:
 #  - sudo DEBIAN_FRONTEND=noninteractive apt-get install -y git wget tar maven curl
 #  - wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09_openj9-0.17.0/OpenJDK8U-jdk_s390x_linux_openj9_8u232b09_openj9-0.17.0.tar.gz && tar -xvf OpenJDK8U-jdk_s390x_linux_openj9_8u232b09_openj9-0.17.0.tar.gz && export JAVA_HOME=`pwd`/jdk8u232-b09/ && export PATH=$JAVA_HOME/bin:$PATH && java -version
   #Install Protobuf 3.3.0 on z
-  - sudo apt-get install -y openjdk-8-jdk
+#  - sudo apt-get install -y openjdk-8-jdk
 #  - export JAVA_HOME="$(readlink -f /etc/alternatives/javac | sed 's:/bin/javac::')" 
 #  - export PATH=$JAVA_HOME/bin:$PATH
   - java -version
@@ -91,7 +91,7 @@ before_install:
   - gitlog=$(git log $TRAVIS_COMMIT_RANGE 2>/dev/null) || gitlog=""
   - clearcache=$(echo $gitlog | grep -c -E "clear bower|bower clear" || true)
   - if [ "$hasbowerchanged" -gt 0 ] || [ "$clearcache" -gt 0 ]; then echo "Clearing bower_components cache"; rm -r zeppelin-web/bower_components; npm cache verify; else echo "Using cached bower_components."; fi
-  - echo "MAVEN_OPTS='-Xms64M -Xmx128M -XX:MaxPermSize=512m -XX:-UseGCOverheadLimit -Dorg.slf4j.simpleLogger.defaultLogLevel=warn'" >> ~/.mavenrc
+  - echo "MAVEN_OPTS='-Xms128M -Xmx256M -XX:MaxPermSize=512m -XX:-UseGCOverheadLimit -Dorg.slf4j.simpleLogger.defaultLogLevel=warn'" >> ~/.mavenrc
   - bash -x ./testing/install_external_dependencies.sh
   - ls -la .spark-dist ${HOME}/.m2/repository/.cache/maven-download-plugin || true
   - ls .node_modules && cp -r .node_modules zeppelin-web/node_modules || echo "node_modules are not cached"
