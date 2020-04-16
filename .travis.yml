@@ -86,6 +86,39 @@ before_install:
   - ls `pwd`/src/.libs/
   - cd ..
   - mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/src/.libs/protoc
+  - git clone https://github.com/grpc/grpc-java.git && cd grpc-java/ && git checkout v1.4.0
+  - cat > outfile.txt <<EOF
+> @@ -49,6 +49,9 @@
+>      gcc(Gcc) {
+>        target("ppcle_64")
+>      }
+> +    gcc(Gcc) {
+> +      target("s390_64")
+> +    }
+>      clang(Clang) {
+>      }
+>    }
+> @@ -63,11 +66,14 @@
+>      ppcle_64 {
+>        architecture "ppcle_64"
+>      }
+> +    s390_64 {
+> +      architecture "s390_64"
+> +    }
+>    }
+>
+>    components {
+>      java_plugin(NativeExecutableSpec) {
+> -      if (arch in ['x86_32', 'x86_64', 'ppcle_64']) {
+> +      if (arch in ['x86_32', 'x86_64', 'ppcle_64', 's390_64']) {
+>          // If arch is not within the defined platforms, we do not specify the
+>          // targetPlatform so that Gradle will choose what is appropriate.
+>          targetPlatform arch
+> EOF
+
+  - cat outfile.txt
+  - exit 1
+  - patch --ignore-whitespace ./compiler/build.gradle < build_gradle.diff
   # check files included in commit range, clear bower_components if a bower.json file has changed.
   # bower cache clearing can also be forced by putting "bower clear" or "clear bower" in a commit message
   - changedfiles=$(git diff --name-only $TRAVIS_COMMIT_RANGE 2>/dev/null) || changedfiles=""
