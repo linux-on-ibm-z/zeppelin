@@ -81,16 +81,16 @@ before_install:
 #  - export PATH=$JAVA_HOME/bin:$PATH
   - java -version
   - sudo apt-get install -y tar wget autoconf libtool automake g++ make git bzip2 curl unzip zlib1g-dev
-  #- git clone git://github.com/google/protobuf.git && cd protobuf && git checkout v3.3.0 && git config --global url."git://github.com/".insteadOf "https://github.com/" && git submodule update --init --recursive
-  #- ./autogen.sh && ./configure && make && sudo make install && sudo ldconfig && export LD_LIBRARY_PATH=/usr/local/lib 
-  #- ls `pwd`/src/.libs/
-  #- cd ..
-  #- mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/src/.libs/protoc
-  #- git clone https://github.com/grpc/grpc-java.git && cd grpc-java/ && git checkout v1.4.0
-  - cat > outfile.txt <<EOF \n > @@ -49,6 +49,9 @@ \n >      gcc(Gcc) { \n >        target("s390x") \n >      } \n > EOF
-  - cat outfile.txt
-  - exit 1
-  - patch --ignore-whitespace ./compiler/build.gradle < build_gradle.diff
+  - git clone git://github.com/google/protobuf.git && cd protobuf && git checkout v3.3.0 && git config --global url."git://github.com/".insteadOf "https://github.com/" && git submodule update --init --recursive
+  - ./autogen.sh && ./configure && make && sudo make install && sudo ldconfig && export LD_LIBRARY_PATH=/usr/local/lib 
+  - ls `pwd`/src/.libs/
+  - cd ..
+  - mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/src/.libs/protoc
+  - git clone https://github.com/grpc/grpc-java.git && cd grpc-java/ && git checkout v1.4.0
+  - patch --ignore-whitespace ./compiler/build.gradle < ./testing/grpc_java_build.patch
+  - ./gradlew install -Pprotoc=/usr/local/bin/protoc
+  - cd ..
+  - mvn install:install-file -DgroupId=io.grpc -DartifactId=protoc-gen-grpc-java -Dversion=1.4.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/grpc-java/compiler/build/exe/java_plugin/protoc-gen-grpc-java
   # check files included in commit range, clear bower_components if a bower.json file has changed.
   # bower cache clearing can also be forced by putting "bower clear" or "clear bower" in a commit message
   - changedfiles=$(git diff --name-only $TRAVIS_COMMIT_RANGE 2>/dev/null) || changedfiles=""
