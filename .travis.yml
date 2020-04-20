@@ -15,6 +15,8 @@
 
 language: java
 
+arch: s390x
+
 before_cache:
     - sudo chown -R travis:travis $HOME/.m2
 
@@ -41,6 +43,7 @@ addons:
     - r-base-dev
     - mysql-server
     - mysql-client
+    - maven
 
 services:
   - mysql
