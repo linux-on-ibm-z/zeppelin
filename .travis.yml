@@ -64,7 +64,7 @@ jobs:
 
     # Default build command, no tests
     - jdk: "openjdk11"
-      dist: xenial
+      dist: bionic
       env: BUILD_FLAG="clean package -DskipTests" TEST_FLAG="test -DskipTests" QT_QPA_PLATFORM="offscreen"
 
     
