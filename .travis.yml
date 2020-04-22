@@ -86,7 +86,7 @@ before_install:
   - source ~/.environ
   - wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-s390x.tar.xz
   - tar -xf node-v10.15.3-linux-s390x.tar.xz
-  - sudo tar -C /usr/local -xf node-v10.15.3-linux-s390x.tar.xz && export PATH=$PATH:/usr/local/node-v10.15.3-linux-s390x/bin
+  - sudo tar -C /usr/local -xf node-v10.15.3-linux-s390x.tar.xz && export PATH=/usr/local/node-v10.15.3-linux-s390x/bin:$PATH
   - node -v
 
 install:
