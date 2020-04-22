@@ -84,6 +84,10 @@ before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x1024x16"
   #- ./dev/change_scala_version.sh $SCALA_VER
   - source ~/.environ
+  - wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-s390x.tar.xz
+  - tar -xf node-v10.15.3-linux-s390x.tar.xz
+  - sudo tar -C /usr/local -xf node-v10.15.3-linux-s390x.tar.xz && export PATH=$PATH:/usr/local/node-v10.15.3-linux-s390x/bin
+  - node -v
 
 install:
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
