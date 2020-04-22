@@ -65,7 +65,7 @@ jobs:
     # Default build command, no tests
     - jdk: "openjdk8"
       dist: xenial
-      env: BUILD_FLAG="clean package -T C2 -DskipTests -Pweb-angular" TEST_FLAG="test -DskipTests -Pweb-angular" QT_QPA_PLATFORM="offscreen"
+      env: BUILD_FLAG="clean package -T C2 -DskipTests" TEST_FLAG="test -DskipTests" QT_QPA_PLATFORM="offscreen"
 
     
 before_install:
