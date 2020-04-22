@@ -63,8 +63,8 @@ jobs:
     #  env: SCALA_VER="2.11" PROFILE="-Prat" BUILD_FLAG="clean" TEST_FLAG="org.apache.rat:apache-rat-plugin:check" TEST_PROJECTS=""
 
     # Default build command, no tests
-    - jdk: "openjdk11"
-      dist: bionic
+    - jdk: "openjdk8"
+      dist: xenial
       env: BUILD_FLAG="clean package -T C2 -DskipTests" TEST_FLAG="test -DskipTests" QT_QPA_PLATFORM="offscreen"
 
     
