@@ -103,6 +103,7 @@ before_install:
   - ./autogen.sh && ./configure && make && sudo make install && sudo ldconfig && export LD_LIBRARY_PATH=/usr/local/lib 
   - ls `pwd`/src/.libs/
   - protoc --version
+  - mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/src/.libs/protoc
   - cd ..
 
 install:
