@@ -103,6 +103,7 @@ before_install:
   - ./autogen.sh && ./configure && make && sudo make install && sudo ldconfig && export LD_LIBRARY_PATH=/usr/local/lib 
   - ls `pwd`/src/.libs/
   - protoc --version
+  - cd ..
 
 install:
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
