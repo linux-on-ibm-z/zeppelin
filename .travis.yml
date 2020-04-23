@@ -88,7 +88,7 @@ before_install:
   - cd ..
   - mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/src/.libs/protoc
   - cd .. && git clone https://github.com/grpc/grpc-java.git && cd grpc-java/ && git checkout v1.4.0
-  - patch --ignore-whitespace ./compiler/build.gradle < ../testing/grpc_java_build.patch
+  - patch --ignore-whitespace ./compiler/build.gradle < ../../testing/grpc_java_build.patch
   #- export JAVA_TOOL_OPTIONS="-Dhttps.protocols=TLSv1.2"
   #- JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew install -Pprotoc=/usr/local/bin/protoc
   - ls -la /home/travis && mkdir -p /home/travis/.gradle && chmod 777 /home/travis/.gradle
