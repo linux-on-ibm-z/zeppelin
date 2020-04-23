@@ -87,14 +87,14 @@ before_install:
   - ls `pwd`/src/.libs/
   - cd ..
   - mvn install:install-file -DgroupId=com.google.protobuf -DartifactId=protoc -Dversion=3.3.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/protobuf/src/.libs/protoc
-  - git clone https://github.com/grpc/grpc-java.git && cd grpc-java/ && git checkout v1.4.0
+  - cd .. && git clone https://github.com/grpc/grpc-java.git && cd grpc-java/ && git checkout v1.4.0
   - patch --ignore-whitespace ./compiler/build.gradle < ../testing/grpc_java_build.patch
   #- export JAVA_TOOL_OPTIONS="-Dhttps.protocols=TLSv1.2"
   #- JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew install -Pprotoc=/usr/local/bin/protoc
   - ls -la /home/travis && mkdir -p /home/travis/.gradle && chmod 777 /home/travis/.gradle
-  - bash gradlew install -Pprotoc=/usr/local/bin/protoc
-  - cd ..
-  - mvn install:install-file -DgroupId=io.grpc -DartifactId=protoc-gen-grpc-java -Dversion=1.4.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/grpc-java/compiler/build/exe/java_plugin/protoc-gen-grpc-java
+  - ./gradlew install -Pprotoc=/usr/local/bin/protoc
+  - cd zeppelin
+  - mvn install:install-file -DgroupId=io.grpc -DartifactId=protoc-gen-grpc-java -Dversion=1.4.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=/home/travis/linux-on-ibm-z/grpc-java/compiler/build/exe/java_plugin/protoc-gen-grpc-java
   # check files included in commit range, clear bower_components if a bower.json file has changed.
   # bower cache clearing can also be forced by putting "bower clear" or "clear bower" in a commit message
   - changedfiles=$(git diff --name-only $TRAVIS_COMMIT_RANGE 2>/dev/null) || changedfiles=""
