@@ -94,6 +94,7 @@ before_install:
   - sudo ./ibm-java-s390x-sdk-8.0-5.41.bin -r installer.properties
   - export JAVA_HOME=/opt/ibm/java 
   - export JVM_DIR=$JAVA_HOME/jre/lib/s390x/default && export JAVA_JVM_LIBRARY=$JAVA_HOME/jre/lib/s390x/default/libjvm.so && export JAVA_TEST_LDFLAGS="-L$JVM_DIR -R$JVM_DIR -Wl,-ljvm -ldl"
+  - ls /opt/ibm/java/bin && echo $PATH
   - export PATH=$JAVA_HOME/bin:$PATH
   - java version
 
