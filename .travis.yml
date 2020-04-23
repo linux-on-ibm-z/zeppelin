@@ -97,6 +97,12 @@ before_install:
   - ls /opt/ibm/java/bin && echo $PATH
   - export PATH=$JAVA_HOME/bin:$PATH
   - java -version
+  #installing protobuf
+  - sudo apt-get install -y tar wget autoconf libtool automake g++ make git bzip2 curl unzip zlib1g-dev
+  - git clone git://github.com/google/protobuf.git && cd protobuf && git checkout v3.3.0 && git config --global url."git://github.com/".insteadOf "https://github.com/" && git submodule update --init --recursive
+  - ./autogen.sh && ./configure && make && sudo make install && sudo ldconfig && export LD_LIBRARY_PATH=/usr/local/lib 
+  - ls `pwd`/src/.libs/
+  - protoc --version
 
 install:
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
