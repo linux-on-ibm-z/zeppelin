@@ -90,8 +90,9 @@ before_install:
   - git clone https://github.com/grpc/grpc-java.git && cd grpc-java/ && git checkout v1.4.0
   - patch --ignore-whitespace ./compiler/build.gradle < ../testing/grpc_java_build.patch
   #- export JAVA_TOOL_OPTIONS="-Dhttps.protocols=TLSv1.2"
-  #- JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew install -Pprotoc=/usr/local/bin/protoc 
-  - ./gradlew install -Pprotoc=/usr/local/bin/protoc
+  #- JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew install -Pprotoc=/usr/local/bin/protoc
+  - ls -l /home/travis 
+  - sudo ./gradlew install -Pprotoc=/usr/local/bin/protoc
   - cd ..
   - mvn install:install-file -DgroupId=io.grpc -DartifactId=protoc-gen-grpc-java -Dversion=1.4.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=`pwd`/grpc-java/compiler/build/exe/java_plugin/protoc-gen-grpc-java
   # check files included in commit range, clear bower_components if a bower.json file has changed.
