@@ -96,7 +96,7 @@ before_install:
   - export JVM_DIR=$JAVA_HOME/jre/lib/s390x/default && export JAVA_JVM_LIBRARY=$JAVA_HOME/jre/lib/s390x/default/libjvm.so && export JAVA_TEST_LDFLAGS="-L$JVM_DIR -R$JVM_DIR -Wl,-ljvm -ldl"
   - ls /opt/ibm/java/bin && echo $PATH
   - export PATH=$JAVA_HOME/bin:$PATH
-  - java version
+  - java -version
 
 install:
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
