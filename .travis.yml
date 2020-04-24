@@ -93,7 +93,7 @@ before_install:
   #- export JAVA_TOOL_OPTIONS="-Dhttps.protocols=TLSv1.2"
   #- JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew install -Pprotoc=/usr/local/bin/protoc
   - ls -la /home/travis && mkdir -p /home/travis/.gradle && chmod 777 /home/travis/.gradle
-  - ./gradlew install -Pprotoc=/usr/local/bin/protoc --stacktrace
+  - ./gradlew install -Pprotoc=/usr/local/bin/protoc --stacktrace --debug
   - cd zeppelin
   - mvn install:install-file -DgroupId=io.grpc -DartifactId=protoc-gen-grpc-java -Dversion=1.4.0 -Dclassifier=linux-s390_64 -Dpackaging=exe -Dfile=/home/travis/linux-on-ibm-z/grpc-java/compiler/build/exe/java_plugin/protoc-gen-grpc-java
   # check files included in commit range, clear bower_components if a bower.json file has changed.
