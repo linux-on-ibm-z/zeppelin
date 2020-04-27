@@ -63,6 +63,7 @@ jobs:
     # Default build command, no tests
     - jdk: "openjdk8"
       dist: xenial
+      arch: s390x
       env: BUILD_FLAG="clean package -T C2 -DskipTests -Pweb-angular" TEST_FLAG="test -DskipTests -Pweb-angular"
 
     
