@@ -86,7 +86,7 @@ before_install:
 
 install:
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
-  - mvn $BUILD_FLAG $MODULES $PROFILE -B
+  - travis_wait 30 mvn $BUILD_FLAG $MODULES $PROFILE -B
   - if [ x"$BUILD_PLUGINS" == x"true" ]; then echo "mvn clean package -T 2C -pl zeppelin-plugins -amd -B"; mvn clean package -T 2C -pl zeppelin-plugins -amd -B; fi
 
 before_script:
