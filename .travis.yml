@@ -92,6 +92,7 @@ install:
   - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
   - export PATH=$JAVA_HOME/bin:$PATH
   - java -version
+  - npm update
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
   - mvn $BUILD_FLAG $MODULES $PROFILE -B
   - if [ x"$BUILD_PLUGINS" == x"true" ]; then echo "mvn clean package -T 2C -pl zeppelin-plugins -amd -B"; mvn clean package -T 2C -pl zeppelin-plugins -amd -B; fi
