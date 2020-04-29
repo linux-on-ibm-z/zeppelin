@@ -94,7 +94,7 @@ install:
   - java -version
   - npm update
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
-  - mvn $BUILD_FLAG $MODULES $PROFILE -B
+  - mvn $BUILD_FLAG $MODULES $PROFILE -B -X
   - if [ x"$BUILD_PLUGINS" == x"true" ]; then echo "mvn clean package -T 2C -pl zeppelin-plugins -amd -B"; mvn clean package -T 2C -pl zeppelin-plugins -amd -B; fi
 
 before_script:
