@@ -94,7 +94,7 @@ install:
   - export PATH=$JAVA_HOME/bin:$PATH
   - java -version
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
-  - mvn $BUILD_FLAG $MODULES $PROFILE -B -X
+  - mvn $BUILD_FLAG $MODULES $PROFILE -B
   - if [ x"$BUILD_PLUGINS" == x"true" ]; then echo "mvn clean package -T 2C -pl zeppelin-plugins -amd -B"; mvn clean package -T 2C -pl zeppelin-plugins -amd -B; fi
 
 before_script:
