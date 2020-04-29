@@ -64,7 +64,7 @@ jobs:
     - jdk: "openjdk8"
       dist: xenial
       arch: s390x
-      env: BUILD_FLAG="clean package -T C2 -DskipTests" TEST_FLAG="test -DskipTests -Pweb-angular" QT_QPA_PLATFORM="offscreen"
+      env: BUILD_FLAG="clean package -T C2 -DskipTests -Pweb-angular" TEST_FLAG="test -DskipTests -Pweb-angular" QT_QPA_PLATFORM="offscreen"
       #env: BUILD_FLAG="clean package -T C2 -DskipTests"  QT_QPA_PLATFORM="offscreen"
 
     
@@ -87,12 +87,12 @@ before_install:
 
 install:
   - mvn --version
-  - sudo apt-get install -y build-essential openjdk-8-jdk-headless openjdk-8-jdk
   - export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=1024m" 
-  - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-s390x
+  - wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09/OpenJDK8U-jdk_s390x_linux_hotspot_8u252b09.tar.gz
+  - tar -xf OpenJDK8U-jdk_s390x_linux_hotspot_8u252b09.tar.gz
+  - export JAVA_HOME=`pwd`/jdk8u252-b09
   - export PATH=$JAVA_HOME/bin:$PATH
   - java -version
-  - npm update
   - echo "mvn $BUILD_FLAG $MODULES $PROFILE -B"
   - mvn $BUILD_FLAG $MODULES $PROFILE -B -X
   - if [ x"$BUILD_PLUGINS" == x"true" ]; then echo "mvn clean package -T 2C -pl zeppelin-plugins -amd -B"; mvn clean package -T 2C -pl zeppelin-plugins -amd -B; fi
