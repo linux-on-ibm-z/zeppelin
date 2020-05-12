@@ -64,7 +64,7 @@ jobs:
     - jdk: "openjdk8"
       dist: xenial
       arch: s390x
-      env: BUILD_FLAG="clean package -T C2 -DskipTests -Pweb-angular" TEST_FLAG="test -DskipTests -Pweb-angular"
+      env: BUILD_FLAG="clean package -T C2 -DskipTests -Pweb-angular" TEST_FLAG="test -DskipTests -Pweb-angular" QT_QPA_PLATFORM="offscreen"
 
 before_install:
   # check files included in commit range, clear bower_components if a bower.json file has changed.
